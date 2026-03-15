@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code With Poojan · dark · full hero · larger text</title>
+    <!-- Tailwind + AOS + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        scroll-behavior: smooth;
+        background-color: #0a0c10;
+        color: #e5e7eb;
+      }
+      .hover-glow:hover {
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
+        transition: 0.2s;
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-6px);
+      }
+      .whatsapp-submit {
+        transition: 0.2s;
+      }
+      .whatsapp-submit:hover {
+        background-color: #075e54;
+        transform: scale(1.02);
+      }
+      .sticky-nav {
+        backdrop-filter: blur(10px);
+        background-color: rgba(17, 24, 39, 0.8);
+        border-bottom: 1px solid #1f2937;
+      }
+      .mobile-menu {
+        transition: max-height 0.3s ease;
+        overflow: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e1e2f;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3b4b5e;
+        border-radius: 6px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #5a6f82;
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-[#0a0c10] text-gray-200">
+    <!-- ===== NAVBAR (fixed at top, bigger version) ===== -->
+    <nav class="fixed top-0 z-50 w-full sticky-nav shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex items-center justify-between">
+          <a
+            href="#"
+            class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 hover:scale-105 transition leading-10 py-1"
+          >
+            Code With Poojan
+          </a>
+          <div class="hidden md:flex gap-8 text-base font-medium text-gray-300">
+            <a href="#hero" class="hover:text-white transition">Home</a>
+            <a href="#resources" class="hover:text-white transition"
+              >Resources</a
+            >
+            <a href="#companies" class="hover:text-white transition"
+              >Companies</a
+            >
+            <a href="#reviews" class="hover:text-white transition">Reviews</a>
+            <a href="#contact" class="hover:text-white transition">Contact</a>
+          </div>
+          <button
+            id="menuBtn"
+            class="md:hidden text-gray-300 focus:outline-none text-3xl"
+            aria-label="Toggle menu"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <div
+          id="mobileMenu"
+          class="mobile-menu max-h-0 md:hidden transition-all duration-300 ease-in-out"
+        >
+          <div class="pt-4 pb-2 space-y-2 text-base font-medium text-gray-300">
+            <a href="#hero" class="block py-2 hover:text-white transition"
+              >Home</a
+            >
+            <a href="#resources" class="block py-2 hover:text-white transition"
+              >Resources</a
+            >
+            <a href="#companies" class="block py-2 hover:text-white transition"
+              >Companies</a
+            >
+            <a href="#reviews" class="block py-2 hover:text-white transition"
+              >Reviews</a
+            >
+            <a href="#contact" class="block py-2 hover:text-white transition"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== HERO SECTION (with top padding to avoid navbar overlap) ===== -->
+    <section
+      id="hero"
+      class="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#111827] to-[#1e1a2b] pt-24 pb-16"
+    >
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <!-- Heading -->
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-300 bg-clip-text text-transparent leading-normal pb-4"
+        >
+          Welcome to Code With Poojan
+        </h1>
+
+        <!-- Description -->
+        <p
+          class="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
+        >
+          Comprehensive coding resources — from video lectures and tutorials to
+          notes and cheatsheets.
+          <br class="hidden sm:block" />
+          Join 10,000+ students who have transformed their careers and landed
+          dream jobs at top tech companies.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#resources"
+            class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-500 hover:shadow-xl transition-all text-lg"
+          >
+            Explore Now
+          </a>
+
+          <a
+            href="#contact"
+            class="border-2 border-blue-500 text-blue-300 px-8 py-3 rounded-full font-semibold hover:bg-blue-900/30 transition text-lg"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BLOCKS : Video Lectures, Tutorials, Notes, Cheatsheets (with scroll margin) ===== -->
+    <section id="resources" class="py-20 bg-[#0e1217] scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-4 text-white"
+          data-aos="fade-up"
+        >
+          Learning modules
+        </h2>
+        <p
+          class="text-center text-gray-400 mb-12 text-lg"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Click any block — opens a new tab with details
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Video Lectures -->
+          <a
+            href="video-section.html"
+            target="_blank"
+            rel="noopener"
+            class="block p-8 bg-[#1b2a3a] rounded-3xl border-2 border-blue-800 hover:border-blue-500 text-center card-hover hover-glow"
+            data-aos="zoom-in"
+          >
+            <i class="fas fa-play-circle text-5xl text-blue-400 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2 text-white">Video Lectures</h3>
+            <p class="text-gray-300">Structured courses & tutorials</p>
+          </a>
+          <!-- Tutorials -->
+          <a
+            href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family%3Asans-serif%3Bbackground%3A%23111%3Bcolor%3Awhite%3Bpadding%3A2rem'%3E%F0%9F%93%96%20Tutorials%20-%20Code%20With%20Poojan%3C%2Fh1%3E%3Cp%20style%3D'color%3A%23ddd'%3EStep-by-step%20written%20guides%20with%20examples...%3C%2Fp%3E"
+            target="_blank"
+            rel="noopener"
+            class="block p-8 bg-[#1b3a2a] rounded-3xl border-2 border-green-800 hover:border-green-500 text-center card-hover hover-glow"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <i class="fas fa-book-open text-5xl text-green-400 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2 text-white">Tutorials</h3>
+            <p class="text-gray-300">Text & code walkthroughs</p>
+          </a>
+          <!-- Notes -->
+          <a
+            href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family%3Asans-serif%3Bbackground%3A%23111%3Bcolor%3Awhite%3Bpadding%3A2rem'%3E%F0%9F%93%9A%20Notes%20-%20Code%20With%20Poojan%3C%2Fh1%3E%3Cp%20style%3D'color%3A%23ddd'%3ECrisp%20notes%20%26%20cheatsheets%20for%20quick%20revision...%3C%2Fp%3E"
+            target="_blank"
+            rel="noopener"
+            class="block p-8 bg-[#3a3320] rounded-3xl border-2 border-yellow-700 hover:border-yellow-500 text-center card-hover hover-glow"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <i class="fas fa-sticky-note text-5xl text-yellow-400 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2 text-white">Notes</h3>
+            <p class="text-gray-300">Downloadable summary</p>
+          </a>
+          <!-- Cheatsheets -->
+          <a
+            href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family%3Asans-serif%3Bbackground%3A%23111%3Bcolor%3Awhite%3Bpadding%3A2rem'%3E%F0%9F%9A%80%20Cheatsheets%20-%20Code%20With%20Poojan%3C%2Fh1%3E%3Cp%20style%3D'color%3A%23ddd'%3EQuick%20reference%20for%20languages%20%26%20frameworks...%3C%2Fp%3E"
+            target="_blank"
+            rel="noopener"
+            class="block p-8 bg-[#35253a] rounded-3xl border-2 border-purple-800 hover:border-purple-500 text-center card-hover hover-glow"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+          >
+            <i class="fas fa-file-alt text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2 text-white">Cheatsheets</h3>
+            <p class="text-gray-300">Syntax at a glance</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COMPANIES SECTION (with scroll margin) ===== -->
+    <section
+      id="companies"
+      class="py-20 bg-[#0f1115] scroll-mt-24"
+      data-aos="fade-up"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+          Helped students achieve their dream job at
+        </h2>
+        <p class="text-gray-400 text-lg mb-12">
+          proud alumni work at top product & service companies
+        </p>
+        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Amazon</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Google</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Microsoft</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Goldman</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >PayPal</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Samsung</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >ey</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Hitachi</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >JPMorgan</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >IBM</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Dell</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border border-gray-700 hover:scale-105 transition hover:border-blue-500"
+            >Deloitte</span
+          >
+          <span
+            class="bg-[#1f2937] px-5 py-3 rounded-full shadow-md text-gray-200 border-2 border-blue-700 hover:border-blue-400 transition"
+            >+ many more</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REVIEWS SECTION (with scroll margin) ===== -->
+    <section id="reviews" class="py-20 bg-[#0e1217] scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-14 text-white"
+          data-aos="fade-right"
+        >
+          What our students say
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- all reviews with data-aos="fade-up" -->
+          <div
+            class="bg-[#1b1f2b] p-8 rounded-3xl shadow-xl border border-gray-800 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="0"
+          >
+            <div class="flex text-yellow-400 mb-4">★★★★★</div>
+            <p class="text-gray-300 mb-4">
+              "Code With Poojan made DSA so easy. The notes and video lectures
+              are crisp. Landed an internship at Amazon!"
+            </p>
+            <div class="font-semibold text-white">— Priya Mehta</div>
+            <div class="text-sm text-gray-400">SDE intern @Amazon</div>
+          </div>
+          <div
+            class="bg-[#1b1f2b] p-8 rounded-3xl shadow-xl border border-gray-800 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="flex text-yellow-400 mb-4">★★★★★</div>
+            <p class="text-gray-300 mb-4">
+              "The cheatsheets are life savers during interviews. I cracked
+              Google because of the system design resources."
+            </p>
+            <div class="font-semibold text-white">— Rohan Desai</div>
+            <div class="text-sm text-gray-400">SWE @Google</div>
+          </div>
+          <div
+            class="bg-[#1b1f2b] p-8 rounded-3xl shadow-xl border border-gray-800 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="flex text-yellow-400 mb-4">★★★★★</div>
+            <p class="text-gray-300 mb-4">
+              "I was from non-CS background, tutorials helped me switch to tech.
+              Now at Microsoft. Thank you Poojan!"
+            </p>
+            <div class="font-semibold text-white">— Sneha Kapoor</div>
+            <div class="text-sm text-gray-400">PM @Microsoft</div>
+          </div>
+          <div
+            class="bg-[#1b1f2b] p-8 rounded-3xl shadow-xl border border-gray-800 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="flex text-yellow-400 mb-4">★★★★☆</div>
+            <p class="text-gray-300 mb-4">
+              "Very structured content. The video lectures are engaging and to
+              the point. Got placed at PayPal."
+            </p>
+            <div class="font-semibold text-white">— Akash Sharma</div>
+            <div class="text-sm text-gray-400">PayPal</div>
+          </div>
+          <div
+            class="bg-[#1b1f2b] p-8 rounded-3xl shadow-xl border border-gray-800 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="flex text-yellow-400 mb-4">★★★★★</div>
+            <p class="text-gray-300 mb-4">
+              "I loved the community and doubt-solving. The notes are gold.
+              Currently at Goldman Sachs."
+            </p>
+            <div class="font-semibold text-white">— Nikhil Jain</div>
+            <div class="text-sm text-gray-400">Goldman Sachs</div>
+          </div>
+          <div
+            class="bg-[#1b1f2b] p-8 rounded-3xl shadow-xl border border-gray-800 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div class="flex text-yellow-400 mb-4">★★★★★</div>
+            <p class="text-gray-300 mb-4">
+              "The way Poojan explains concurrency and OS is unmatched. Got into
+              JPMorgan thanks to the tutorials."
+            </p>
+            <div class="font-semibold text-white">— Anjali Singh</div>
+            <div class="text-sm text-gray-400">JPMorgan</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT FORM (WhatsApp) (with scroll margin) ===== -->
+    <section
+      id="contact"
+      class="py-20 bg-gradient-to-b from-[#0f1115] to-[#1a1e2a] scroll-mt-24"
+    >
+      <div class="max-w-3xl mx-auto px-4">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-4 text-white"
+          data-aos="fade-down"
+        >
+          Need guidance? Write to us
+        </h2>
+        <p class="text-center text-gray-400 mb-10">
+          We'll reply instantly on WhatsApp 📲
+        </p>
+        <div
+          class="bg-[#1e2533] rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-700"
+          data-aos="zoom-in-up"
+        >
+          <form id="contactForm">
+            <div class="mb-5">
+              <label class="block text-gray-300 font-medium mb-2"
+                >Full name</label
+              >
+              <input
+                type="text"
+                id="name"
+                required
+                placeholder="John Doe"
+                class="w-full bg-[#2d3748] border border-gray-600 rounded-xl px-5 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
+            </div>
+            <div class="mb-5">
+              <label class="block text-gray-300 font-medium mb-2"
+                >Phone number (with country code)</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                required
+                placeholder="+91 98765 43210"
+                class="w-full bg-[#2d3748] border border-gray-600 rounded-xl px-5 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 outline-none transition"
+              />
+            </div>
+            <div class="mb-5">
+              <label class="block text-gray-300 font-medium mb-2"
+                >Select topic / language</label
+              >
+              <select
+                id="topic"
+                required
+                class="w-full bg-[#2d3748] border border-gray-600 rounded-xl px-5 py-3 text-white focus:ring-2 focus:ring-blue-500 outline-none"
+              >
+                <option value="" disabled selected class="bg-gray-700">
+                  — choose one —
+                </option>
+                <option class="bg-gray-700">JavaScript</option>
+                <option class="bg-gray-700">Python</option>
+                <option class="bg-gray-700">Java</option>
+                <option class="bg-gray-700">C++</option>
+                <option class="bg-gray-700">C#</option>
+                <option class="bg-gray-700">Ruby</option>
+                <option class="bg-gray-700">PHP</option>
+                <option class="bg-gray-700">Swift</option>
+                <option class="bg-gray-700">Kotlin</option>
+                <option class="bg-gray-700">Go</option>
+                <option class="bg-gray-700">Rust</option>
+                <option class="bg-gray-700">TypeScript</option>
+                <option class="bg-gray-700">HTML/CSS</option>
+                <option class="bg-gray-700">SQL</option>
+                <option class="bg-gray-700">React</option>
+                <option class="bg-gray-700">Angular</option>
+                <option class="bg-gray-700">Vue</option>
+                <option class="bg-gray-700">Node.js</option>
+                <option class="bg-gray-700">Django</option>
+                <option class="bg-gray-700">Flask</option>
+                <option class="bg-gray-700">Spring Boot</option>
+                <option class="bg-gray-700">Machine Learning</option>
+                <option class="bg-gray-700">Data Science</option>
+                <option class="bg-gray-700">Cloud (AWS/Azure)</option>
+                <option class="bg-gray-700">DevOps</option>
+                <option class="bg-gray-700">DSA</option>
+                <option class="bg-gray-700">System Design</option>
+                <option class="bg-gray-700">AI / LLM</option>
+                <option class="bg-gray-700">Mobile Dev</option>
+                <option class="bg-gray-700">Blockchain</option>
+              </select>
+            </div>
+            <div class="mb-5">
+              <label class="block text-gray-300 font-medium mb-2"
+                >Your question / description</label
+              >
+              <textarea
+                id="description"
+                rows="4"
+                required
+                placeholder="I need help with ..."
+                class="w-full bg-[#2d3748] border border-gray-600 rounded-xl px-5 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full whatsapp-submit bg-green-700 text-white font-bold text-lg py-4 rounded-xl shadow-lg hover:bg-green-600 transition flex items-center justify-center gap-3"
+            >
+              <i class="fab fa-whatsapp text-2xl"></i> Send to WhatsApp
+            </button>
+            <p class="text-xs text-gray-500 text-center mt-4">
+              (clicking will open WhatsApp with your details)
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#07090e] text-gray-400 py-12 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-white text-2xl font-bold mb-4">Code With Poojan</h3>
+          <p class="text-sm text-gray-400">
+            Making coding accessible with smooth tutorials, notes & cheatsheets.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Quick links</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#hero" class="hover:text-white transition">Home</a>
+            </li>
+            <li>
+              <a href="#resources" class="hover:text-white transition"
+                >Resources</a
+              >
+            </li>
+            <li>
+              <a href="#companies" class="hover:text-white transition"
+                >Companies</a
+              >
+            </li>
+            <li>
+              <a href="#reviews" class="hover:text-white transition">Reviews</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 63592
+              88482
+            </li>
+            <li>
+              <i class="far fa-envelope mr-2"></i> poojan@codewithpoojan.dev
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Follow</h4>
+          <div class="flex gap-4 text-2xl">
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 text-center text-xs text-gray-600"
+      >
+        © 2026 Code With Poojan — all rights reserved. Made with ❤️ for
+        developers.
+      </div>
+    </footer>
+
+    <!-- AOS & scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 800, easing: "ease-out" });
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("name").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const topic = document.getElementById("topic").value;
+          const desc = document.getElementById("description").value.trim();
+          if (!name || !phone || !topic || !desc)
+            return alert("Please fill all fields");
+          const message = `*New inquiry from Code With Poojan website*%0A%0A👤 *Name:* ${encodeURIComponent(name)}%0A📞 *Phone:* ${encodeURIComponent(phone)}%0A📚 *Topic:* ${encodeURIComponent(topic)}%0A💬 *Description:* ${encodeURIComponent(desc)}`;
+          window.open(`https://wa.me/916359288482?text=${message}`, "_blank");
+        });
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      let menuOpen = false;
+      menuBtn.addEventListener("click", () => {
+        if (menuOpen) {
+          mobileMenu.style.maxHeight = "0";
+          menuOpen = false;
+        } else {
+          mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+          menuOpen = true;
+        }
+      });
+      document.querySelectorAll("#mobileMenu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.style.maxHeight = "0";
+          menuOpen = false;
+        });
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (
+            href !== "#" &&
+            href.startsWith("#") &&
+            document.querySelector(href)
+          ) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

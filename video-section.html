@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code With Poojan · Video lectures · all categories</title>
+    <!-- Tailwind + AOS + Font Awesome (same as homepage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      html,
+      body {
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        scroll-behavior: smooth;
+        background-color: #0a0c10;
+        color: #e5e7eb;
+      }
+      .hover-glow:hover {
+        box-shadow: 0 0 18px rgba(96, 165, 250, 0.4);
+        transition: 0.2s;
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-6px);
+      }
+      /* category grid custom */
+      .category-tag {
+        background: #1f2a37;
+        border-radius: 9999px;
+        padding: 0.25rem 1rem;
+        font-size: 0.85rem;
+        color: #9ca3af;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-[#0a0c10] text-gray-200">
+    <!-- ===== NAVBAR (fixed at top) ===== -->
+    <nav class="fixed top-0 z-50 w-full backdrop-blur bg-gray-900/80 border-b border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
+        <!-- Logo bigger with line-height fix -->
+        <a
+          href="index.html"
+          class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 leading-10 py-1"
+        >
+          Code With Poojan
+        </a>
+        <!-- Nav links bigger text and gap (Home, Notes, Tutorials, Cheat Sheets, Support) -->
+        <div class="hidden md:flex gap-8 text-base font-medium text-gray-300">
+          <a href="index.html" class="hover:text-white transition">Home</a>
+          <a href="notes.html" class="hover:text-white transition">Notes</a>
+          <a href="tutorials.html" class="hover:text-white transition">Tutorials</a>
+          <a href="cheat-sheets.html" class="hover:text-white transition">Cheat Sheets</a>
+          <a href="support.html" class="hover:text-white transition">Support</a>
+        </div>
+        <!-- Mobile menu button bigger -->
+        <button
+          id="menuBtn"
+          class="md:hidden text-gray-300 text-3xl focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Mobile menu (bigger links) -->
+      <div
+        id="mobileMenu"
+        class="max-h-0 md:hidden overflow-hidden transition-all duration-300 px-4"
+      >
+        <div class="pt-4 pb-2 space-y-2 text-base font-medium text-gray-300">
+          <a href="index.html" class="block py-2 hover:text-white transition">Home</a>
+          <a href="notes.html" class="block py-2 hover:text-white transition">Notes</a>
+          <a href="tutorials.html" class="block py-2 hover:text-white transition">Tutorials</a>
+          <a href="cheat-sheets.html" class="block py-2 hover:text-white transition">Cheat Sheets</a>
+          <a href="support.html" class="block py-2 hover:text-white transition">Support</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== HERO (with top padding to avoid fixed navbar overlap) ===== -->
+    <section class="pt-32 pb-12 bg-gradient-to-b from-[#111827] to-[#1a1f2e]">
+      <div class="max-w-6xl mx-auto px-6 text-center" data-aos="fade-down">
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-blue-300 via-indigo-200 to-purple-200 bg-clip-text text-transparent"
+        >
+          📺 Video Lectures
+        </h1>
+        <p
+          class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+        >
+          Explore our extensive collection of category‑wise video courses. From
+          DSA to machine learning — everything taught with real‑world examples.
+        </p>
+        <!-- decorative chips -->
+        <div class="flex flex-wrap justify-center gap-2 mt-8">
+          <span class="category-tag border border-blue-800">200+ hours</span>
+          <span class="category-tag border border-purple-800"
+            >30+ instructors</span
+          >
+          <span class="category-tag border border-green-800"
+            >projects included</span
+          >
+          <span class="category-tag border border-yellow-800"
+            >updated 2026</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FILTER / SEARCH BAR (subtle) ===== -->
+    <div class="max-w-4xl mx-auto px-4 mt-6 mb-10">
+      <div class="relative" data-aos="fade-up">
+        <i
+          class="fas fa-search absolute left-5 top-4 text-gray-500 text-lg"
+        ></i>
+        <input
+          type="text"
+          id="categorySearch"
+          placeholder="Search your favourite topic (python, react, ai ...)"
+          class="w-full bg-[#1e2636] border border-gray-700 rounded-full py-4 pl-14 pr-6 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-600 outline-none transition"
+        />
+      </div>
+    </div>
+
+    <!-- ===== ALL CATEGORIES GRID (matching dark cards) ===== -->
+    <section class="pb-24 px-4" id="videoGrid">
+      <div class="max-w-7xl mx-auto">
+        <!-- category count note -->
+        <p class="text-gray-400 mb-6 text-sm" id="resultCount" data-aos="fade">
+          ✨ 28 categories available
+        </p>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          id="categoryContainer"
+        >
+          <!-- 1. Data Science -->
+          <div class="category-card" data-name="data science python pandas numpy">
+            <a
+              href="data-science.html"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#1b2a3a] rounded-2xl border-2 border-blue-900 hover:border-blue-500 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fas fa-chart-line text-4xl text-blue-400 mb-3"></i>
+                <span class="text-xs bg-blue-900 text-blue-200 px-3 py-1 rounded-full">38 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">Data Science</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                Python, pandas, NumPy, Matplotlib, scikit‑learn & real projects
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#python</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#ml</span>
+              </div>
+            </a>
+          </div>
+          <!-- 2. Frontend Web Dev -->
+          <div class="category-card" data-name="frontend html css javascript react vue angular">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E🖥️%20Frontend%20web%20dev%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(complete%20playlist%20–%20Code%20With%20Poojan)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#1b3a2a] rounded-2xl border-2 border-green-800 hover:border-green-500 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fab fa-html5 text-4xl text-orange-400 mb-3"></i>
+                <span class="text-xs bg-green-900 text-green-200 px-3 py-1 rounded-full">62 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">Frontend web dev</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                HTML, CSS, JavaScript, React, Vue, Tailwind, responsive design
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#react</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#vue</span>
+              </div>
+            </a>
+          </div>
+          <!-- 4. Machine Learning / AI -->
+          <div class="category-card" data-name="machine learning ai neural networks tensorflow pytorch">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E🤖%20Machine%20Learning%20%26%20AI%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(Code%20With%20Poojan%20–%20full%20series)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#2a1f2f] rounded-2xl border-2 border-pink-900 hover:border-pink-500 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fas fa-brain text-4xl text-pink-400 mb-3"></i>
+                <span class="text-xs bg-pink-900 text-pink-200 px-3 py-1 rounded-full">51 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">Machine Learning / AI</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                supervised/unsupervised, TensorFlow, PyTorch, NLP, LLMs
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#tf</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#pytorch</span>
+              </div>
+            </a>
+          </div>
+          <!-- 5. DSA (data structures & algorithms) -->
+          <div class="category-card" data-name="dsa data structures algorithms java cpp python">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E📐%20DSA%20%26%20problem%20solving%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(crack%20interviews%20with%20Poojan)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#1f3340] rounded-2xl border-2 border-cyan-800 hover:border-cyan-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fas fa-code-branch text-4xl text-cyan-400 mb-3"></i>
+                <span class="text-xs bg-cyan-900 text-cyan-200 px-3 py-1 rounded-full">73 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">DSA (all languages)</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                arrays, trees, graphs, DP, competitive coding in C++/Java/Python
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#cpp</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#java</span>
+              </div>
+            </a>
+          </div>
+          <!-- 6. Data Analytics card -->
+          <div class="category-card" data-name="data analytics power bi tableau excel sql">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E📊%20Data%20Analytics%20Bootcamp%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(SQL%2C%20Excel%2C%20Tableau%2C%20Power%20BI%2C%20Python%20pandas)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#2a3b4c] rounded-2xl border-2 border-teal-800 hover:border-teal-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fas fa-chart-pie text-4xl text-teal-300 mb-3"></i>
+                <span class="text-xs bg-teal-900 text-teal-200 px-3 py-1 rounded-full">42 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">Data Analytics</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                SQL, Excel, Tableau, Power BI, pandas – from data cleaning to interactive dashboards
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#sql</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#tableau</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#powerbi</span>
+              </div>
+            </a>
+          </div>
+          <!-- 8. React Js -->
+          <div class="category-card" data-name="react js reactjs frontend library hooks nextjs">
+            <a
+              href="react.html"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#1e3a4a] rounded-2xl border-2 border-sky-800 hover:border-sky-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fab fa-react text-4xl text-sky-300 mb-3"></i>
+                <span class="text-xs bg-sky-900 text-sky-200 px-3 py-1 rounded-full">2 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">React.js</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                hooks, state management, Next.js, performance patterns & real‑world projects
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#react</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#nextjs</span>
+              </div>
+            </a>
+          </div>
+          <!-- 9. Python (special) -->
+          <div class="category-card" data-name="python programming language">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E🐍%20Python%20masterclass%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(beginner%20to%20advanced)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#203b32] rounded-2xl border-2 border-green-700 hover:border-green-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fab fa-python text-4xl text-green-300 mb-3"></i>
+                <span class="text-xs bg-green-900 text-green-200 px-3 py-1 rounded-full">55 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">Python (core+)</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                syntax, OOP, modules, automation, scripting, interview prep
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#python</span>
+              </div>
+            </a>
+          </div>
+          <!-- 10. Java & Spring -->
+          <div class="category-card" data-name="java spring boot microservices">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E☕%20Java%20%26%20Spring%20boot%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(enterprise%20edition)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#3a2b2b] rounded-2xl border-2 border-red-900 hover:border-red-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fab fa-java text-4xl text-red-400 mb-3"></i>
+                <span class="text-xs bg-red-900 text-red-200 px-3 py-1 rounded-full">41 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">Java / Spring Boot</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                Core Java, Spring, microservices, Hibernate, REST APIs
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#spring</span>
+              </div>
+            </a>
+          </div>
+          <!-- 11. JavaScript (full stack) -->
+          <div class="category-card" data-name="javascript js es6 node react">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E🟨%20JavaScript%20%26%20ecosystem%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(ES6%20%7C%20node%20%7C%20react)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#332e1f] rounded-2xl border-2 border-yellow-700 hover:border-yellow-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fab fa-js text-4xl text-yellow-300 mb-3"></i>
+                <span class="text-xs bg-yellow-900 text-yellow-200 px-3 py-1 rounded-full">67 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">JavaScript (full)</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                core JS, Node.js, Express, React, Next.js, modern workflow
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#node</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#react</span>
+              </div>
+            </a>
+          </div>
+          <!-- 12. SQL & databases -->
+          <div class="category-card" data-name="sql database mysql postgresql mongodb">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E🗄️%20SQL%20%26%20NoSQL%20databases%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(queries,%20design,%20optimization)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#1d313d] rounded-2xl border-2 border-blue-800 hover:border-blue-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fas fa-database text-4xl text-blue-300 mb-3"></i>
+                <span class="text-xs bg-blue-900 text-blue-200 px-3 py-1 rounded-full">32 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">SQL & databases</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                MySQL, PostgreSQL, MongoDB, indexing, transactions, prisma
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#sql</span>
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#mongodb</span>
+              </div>
+            </a>
+          </div>
+          <!-- 13. C / C++ -->
+          <div class="category-card" data-name="c cpp c++ programming">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E⚡%20C%20%2F%20C%2B%2B%20from%20scratch%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(pointers,%20STL,%20DSA)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#263b3f] rounded-2xl border-2 border-teal-800 hover:border-teal-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fas fa-code text-4xl text-teal-300 mb-3"></i>
+                <span class="text-xs bg-teal-900 text-teal-200 px-3 py-1 rounded-full">48 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">C / C++</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                memory, OOP with C++, STL, competitive coding foundations
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#cpp</span>
+              </div>
+            </a>
+          </div>
+          <!-- 16. AI / LLMs (advanced) -->
+          <div class="category-card" data-name="ai llm large language models transformers gpt">
+            <a
+              href="data:text/html;charset=utf-8,%3Ch1%20style%3D'font-family:sans-serif;background:%23111;color:white;padding:2rem;text-align:center'%3E🧠%20Large%20Language%20Models%20(LLM)%3Cbr%3E%3Cspan%20style%3D'font-size:1rem;color:%23999'%3E(finetuning%20%7C%20RAG%20%7C%20prompt%20eng)%3C/span%3E%3C/h1%3E"
+              target="_blank"
+              rel="noopener"
+              class="block bg-[#2a1f40] rounded-2xl border-2 border-violet-800 hover:border-violet-400 p-6 card-hover hover-glow h-full"
+            >
+              <div class="flex justify-between items-start">
+                <i class="fas fa-robot text-4xl text-violet-400 mb-3"></i>
+                <span class="text-xs bg-violet-900 text-violet-200 px-3 py-1 rounded-full">19 videos</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2 text-white">AI / LLMs</h3>
+              <p class="text-gray-300 text-sm mb-4">
+                transformers, GPT, Llama, RAG, LangChain, fine‑tuning
+              </p>
+              <div class="flex flex-wrap gap-1 mt-auto">
+                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">#llm</span>
+              </div>
+            </a>
+          </div>
+          <!-- Git & GitHub card -->
+          <div class="category-card" data-name="git github version control">
+            <a
+              href="#"
+              class="block bg-[#1e293b] rounded-2xl border-2 border-gray-600 hover:border-gray-300 p-6 card-hover hover-glow"
+              ><i class="fab fa-git-alt text-4xl text-orange-300 mb-3"></i>
+              <h3 class="text-xl font-bold">Git & GitHub</h3>
+              <p class="text-sm text-gray-400">
+                version control, collaboration, workflows
+              </p></a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#07090e] text-gray-400 py-12 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-white text-2xl font-bold mb-4">Code With Poojan</h3>
+          <p class="text-sm text-gray-400">
+            Making coding accessible with smooth tutorials, notes & cheatsheets.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Quick links</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="index.html" class="hover:text-white transition">Home</a>
+            </li>
+            <li>
+              <a href="notes.html" class="hover:text-white transition">Notes</a>
+            </li>
+            <li>
+              <a href="tutorials.html" class="hover:text-white transition">Tutorials</a>
+            </li>
+            <li>
+              <a href="cheat-sheets.html" class="hover:text-white transition">Cheat Sheets</a>
+            </li>
+            <li>
+              <a href="support.html" class="hover:text-white transition">Support</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 63592 88482
+            </li>
+            <li>
+              <i class="far fa-envelope mr-2"></i> poojan@codewithpoojan.dev
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Follow</h4>
+          <div class="flex gap-4 text-2xl">
+            <a href="#" class="hover:text-white transition"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-github"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-10 pt-8 text-center text-xs text-gray-600">
+        © 2025 Code With Poojan — all rights reserved. Made with ❤️ for developers.
+      </div>
+    </footer>
+
+    <!-- AOS & scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 800, easing: "ease-out" });
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      let menuOpen = false;
+      menuBtn.addEventListener("click", () => {
+        if (menuOpen) {
+          mobileMenu.style.maxHeight = "0";
+          menuOpen = false;
+        } else {
+          mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+          menuOpen = true;
+        }
+      });
+      document.querySelectorAll("#mobileMenu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.style.maxHeight = "0";
+          menuOpen = false;
+        });
+      });
+
+      // simple client‑side search for categories
+      const searchInput = document.getElementById("categorySearch");
+      const cards = document.querySelectorAll(".category-card");
+      const resultSpan = document.getElementById("resultCount");
+
+      function filterCategories() {
+        const term = searchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const name = card.getAttribute("data-name") || "";
+          if (name.includes(term) || term === "") {
+            card.style.display = "block";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+        resultSpan.innerText = `✨ ${visibleCount} categories available`;
+      }
+      searchInput.addEventListener("input", filterCategories);
+    </script>
+  </body>
+</html>

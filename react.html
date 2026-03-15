@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React.js · Video resources · Code With Poojan</title>
+    <!-- Tailwind + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        background-color: #0a0c10;
+        color: #e5e7eb;
+        font-family: sans-serif;
+      }
+      .video-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .video-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+      }
+      /* Modal overlay */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal-content {
+        width: 90%;
+        max-width: 900px;
+        background: #1e2636;
+        border-radius: 1rem;
+        padding: 1rem;
+        position: relative;
+      }
+      .modal-close {
+        position: absolute;
+        top: -2rem;
+        right: 0;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 0.5rem;
+      }
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- ===== NAVBAR (fixed at top, bigger) ===== -->
+    <nav
+      class="fixed top-0 z-50 w-full backdrop-blur bg-gray-900/80 border-b border-gray-800"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between"
+      >
+        <!-- Logo bigger with line-height fix -->
+        <a
+          href="index.html"
+          class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 leading-10 py-1"
+        >
+          Code With Poojan
+        </a>
+        <!-- Nav links bigger text and gap -->
+        <div class="hidden md:flex gap-8 text-base font-medium text-gray-300">
+          <a href="index.html" class="hover:text-white">Home</a>
+          <a href="video-section.html" class="hover:text-white"
+            >Video Section</a
+          >
+          <a href="support.html" class="hover:text-white">Support</a>
+        </div>
+        <!-- Mobile menu button bigger -->
+        <button
+          id="menuBtn"
+          class="md:hidden text-gray-300 text-3xl focus:outline-none"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Mobile menu (bigger links) -->
+      <div
+        id="mobileMenu"
+        class="max-h-0 md:hidden overflow-hidden transition-all duration-300 px-4"
+      >
+        <div class="pt-4 pb-2 space-y-2 text-base font-medium text-gray-300">
+          <a href="index.html" class="block py-2 hover:text-white">Home</a>
+          <a href="video-section.html" class="block py-2 hover:text-white"
+            >Video Section</a
+          >
+          <a href="support.html" class="block py-2 hover:text-white">Support</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== PAGE HEADER (increased top padding to avoid fixed navbar) ===== -->
+    <section class="pt-28 pb-8 text-center mt-4">
+      <h1
+        class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-300 to-blue-300 bg-clip-text text-transparent"
+      >
+        <i class="fab fa-react text-sky-400 mr-3 pb-4"></i> React.js Videos
+      </h1>
+      <!-- <p class="text-gray-400 mt-2">
+        53 videos · click any card to watch directly
+      </p> -->
+    </section>
+
+    <!-- ===== VIDEO GRID ===== -->
+    <section class="pb-20 px-4 max-w-7xl mx-auto">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        id="videoGrid"
+      >
+        <!-- Video card 1: React Hooks -->
+        <div
+          class="video-card bg-[#1e2636] rounded-xl border border-gray-700 overflow-hidden hover:border-blue-500"
+          data-video-id="3LRZRSIh_KE"
+        >
+          <img
+            src="https://img.youtube.com/vi/3LRZRSIh_KE/hqdefault.jpg"
+            alt="Thumbnail"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-white mb-2">
+              React.JS Full Course
+            </h3>
+            <p class="text-gray-400 text-sm mb-4">
+              Learn useState, useEffect, useContext and build a project.
+            </p>
+            <button
+              class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+            >
+              <i class="fab fa-youtube mr-2"></i> Watch now
+            </button>
+          </div>
+        </div>
+
+        <!-- Video card 2: React Router -->
+        <div
+          class="video-card bg-[#1e2636] rounded-xl border border-gray-700 overflow-hidden hover:border-blue-500"
+          data-video-id="TTx7Y3a7EmA"
+        >
+          <img
+            src="https://img.youtube.com/vi/TTx7Y3a7EmA/hqdefault.jpg"
+            alt="Thumbnail"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-white mb-2">
+              [COMPLETE PROJECT 🔥] React Project!
+            </h3>
+            <p class="text-gray-400 text-sm mb-4">React Js Project</p>
+            <button
+              class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+            >
+              <i class="fab fa-youtube mr-2"></i> Watch now
+            </button>
+          </div>
+        </div>
+
+        <!-- Add more cards as needed -->
+      </div>
+    </section>
+
+    <!-- ===== MODAL (hidden by default) ===== -->
+    <div class="modal-overlay" id="videoModal">
+      <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <div class="video-wrapper">
+          <iframe
+            id="modalIframe"
+            src=""
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; encrypted-media"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#07090e] text-gray-400 py-12 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-white text-2xl font-bold mb-4">Code With Poojan</h3>
+          <p class="text-sm">
+            Making coding accessible with smooth tutorials, notes & cheatsheets.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Quick links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white">Home</a></li>
+            <li>
+              <a href="video-section.html" class="hover:text-white"
+                >Video Section</a
+              >
+            </li>
+            <li>
+              <a href="support.html" class="hover:text-white">Support</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 63592
+              88482
+            </li>
+            <li>
+              <i class="far fa-envelope mr-2"></i> poojan@codewithpoojan.dev
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Follow</h4>
+          <div class="flex gap-4 text-2xl">
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 text-center text-xs text-gray-600"
+      >
+        © 2025 Code With Poojan — all rights reserved. Made with ❤️ for
+        developers.
+      </div>
+    </footer>
+
+    <!-- JavaScript for modal and mobile menu -->
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          if (mobileMenu.style.maxHeight) {
+            mobileMenu.style.maxHeight = null;
+          } else {
+            mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+          }
+        });
+      }
+
+      // Modal functionality
+      const modal = document.getElementById("videoModal");
+      const iframe = document.getElementById("modalIframe");
+      const closeBtn = document.getElementById("closeModal");
+
+      // Add click event to all video cards
+      document.querySelectorAll(".video-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const videoId = this.dataset.videoId;
+          if (videoId) {
+            // Set iframe source with autoplay
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            modal.classList.add("active");
+          }
+        });
+      });
+
+      // Close modal when clicking close button
+      closeBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+        iframe.src = ""; // Stop video
+      });
+
+      // Close modal when clicking outside the modal content
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+          iframe.src = "";
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+          iframe.src = "";
+        }
+      });
+    </script>
+  </body>
+</html>

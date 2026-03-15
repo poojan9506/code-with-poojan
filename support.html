@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support · Code With Poojan</title>
+    <!-- Tailwind + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      html,
+      body {
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        background-color: #0a0c10;
+        color: #e5e7eb;
+        font-family: sans-serif;
+      }
+      .amount-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: #1e2636;
+        border: 2px solid #374151;
+        border-radius: 1rem;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+      }
+      .amount-card:hover {
+        transform: translateY(-4px);
+        border-color: #3b82f6;
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+      }
+      /* Modal overlay */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal-content {
+        width: 90%;
+        max-width: 450px;
+        background: #1e2636;
+        border-radius: 1.5rem;
+        padding: 2rem;
+        position: relative;
+        text-align: center;
+        border: 2px solid #3b82f6;
+      }
+      .modal-close {
+        position: absolute;
+        top: -1.5rem;
+        right: 0;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .qr-img {
+        width: 250px;
+        height: 250px;
+        margin: 1rem auto;
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      .share-btn {
+        background: #3b82f6;
+        color: white;
+        padding: 0.75rem 1rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: background 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      .share-btn:hover {
+        background: #2563eb;
+      }
+      .copy-btn {
+        background: #374151;
+        color: white;
+        padding: 0.75rem 1rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: background 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 0.75rem;
+      }
+      .copy-btn:hover {
+        background: #4b5563;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- ===== NAVBAR (fixed at top, bigger) ===== -->
+    <nav
+      class="fixed top-0 z-50 w-full backdrop-blur bg-gray-900/80 border-b border-gray-800"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between"
+      >
+        <!-- Logo with extra line-height to prevent bottom cut-off -->
+        <a
+          href="index.html"
+          class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 leading-10 py-1"
+        >
+          Code With Poojan
+        </a>
+        <!-- Nav links bigger text and gap -->
+        <div class="hidden md:flex gap-8 text-base font-medium text-gray-300">
+          <a href="index.html" class="hover:text-white">Home</a>
+          <a href="video-section.html" class="hover:text-white"
+            >Video Section</a
+          >
+          <a href="notes.html" class="hover:text-white">Notes</a>
+          <a href="tutorials.html" class="hover:text-white">Tutorials</a>
+          <a href="cheat-sheets.html" class="hover:text-white">Cheat Sheets</a>
+        </div>
+        <!-- Mobile menu button (bigger) -->
+        <button id="menuBtn" class="md:hidden text-gray-300 text-3xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div
+        id="mobileMenu"
+        class="max-h-0 md:hidden overflow-hidden transition-all duration-300 px-4"
+      >
+        <div class="pt-4 pb-2 space-y-2 text-base text-gray-300">
+          <a href="index.html" class="block py-2 hover:text-white">Home</a>
+          <a href="video-section.html" class="block py-2 hover:text-white"
+            >Video Section</a
+          >
+          <a href="notes.html" class="block py-2 hover:text-white">Notes</a>
+          <a href="tutorials.html" class="block py-2 hover:text-white"
+            >Tutorials</a
+          >
+          <a href="cheat-sheets.html" class="block py-2 hover:text-white"
+            >Cheat Sheets</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== HEADER (with top padding to avoid fixed navbar) ===== -->
+    <section class="pt-28 pb-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white">
+        <i class="fas fa-heart text-red-500 mr-3"></i> Support Our Platform
+      </h1>
+      <div class="max-w-3xl mx-auto px-4 mt-4 space-y-4 text-gray-300 text-lg">
+        <p>
+          We have removed ads and made all our notes and resources completely
+          free to keep education accessible for everyone.
+        </p>
+        <p>
+          Your contribution helps us maintain the servers, create new content,
+          and keep this platform running for thousands of students like you.
+        </p>
+        <p class="font-semibold text-white">
+          Higher amounts help us provide free education to more students! 🙏
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== AMOUNT GRID ===== -->
+    <section class="pb-12 px-4 max-w-4xl mx-auto">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="amount-card" data-amount="10">₹10</div>
+        <div class="amount-card" data-amount="20">₹20</div>
+        <div class="amount-card" data-amount="50">₹50</div>
+        <div class="amount-card" data-amount="100">₹100</div>
+        <div class="amount-card" data-amount="300">₹300</div>
+        <div class="amount-card" data-amount="500">₹500</div>
+        <div class="amount-card" data-amount="1000">₹1000</div>
+        <div class="amount-card" data-amount="2000">₹2000</div>
+      </div>
+    </section>
+
+    <!-- ===== QR MODAL ===== -->
+    <div class="modal-overlay" id="qrModal">
+      <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <h3 class="text-2xl font-bold text-white mb-2">Scan QR to Pay</h3>
+        <p class="text-gray-300 mb-2" id="modalAmount"></p>
+        <div class="qr-img">
+          <img
+            id="qrImage"
+            src=""
+            alt="QR Code"
+            class="w-full h-full object-contain"
+          />
+        </div>
+        <!-- Share button -->
+        <button id="shareBtn" class="share-btn">
+          <i class="fas fa-share-alt"></i> Share Payment Link
+        </button>
+        <!-- Copy link button -->
+        <button id="copyBtn" class="copy-btn">
+          <i class="fas fa-copy"></i> Copy Payment Link
+        </button>
+        <p class="text-gray-400 text-xs mt-3">
+          Click share to send payment link to any app (WhatsApp, Telegram, etc.)
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-[#07090e] text-gray-400 py-12 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-white text-2xl font-bold mb-4">Code With Poojan</h3>
+          <p class="text-sm">
+            Making coding accessible with smooth tutorials, notes & cheatsheets.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Quick links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white">Home</a></li>
+            <li>
+              <a href="video-section.html" class="hover:text-white"
+                >Video Section</a
+              >
+            </li>
+            <li><a href="notes.html" class="hover:text-white">Notes</a></li>
+            <li>
+              <a href="tutorials.html" class="hover:text-white">Tutorials</a>
+            </li>
+            <li>
+              <a href="cheat-sheets.html" class="hover:text-white"
+                >Cheat Sheets</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <i class="fab fa-whatsapp text-green-500 mr-2"></i> +91 63592
+              88482
+            </li>
+            <li>
+              <i class="far fa-envelope mr-2"></i> poojan@codewithpoojan.dev
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">Follow</h4>
+          <div class="flex gap-4 text-2xl">
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="#" class="hover:text-white"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 text-center text-xs text-gray-600"
+      >
+        © 2025 Code With Poojan — all rights reserved. Made with ❤️ for
+        developers.
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          if (mobileMenu.style.maxHeight) {
+            mobileMenu.style.maxHeight = null;
+          } else {
+            mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+          }
+        });
+      }
+
+      // ---------- QR & SHARE ----------
+      // Your FamPay UPI ID
+      const UPI_ID = "6359288482@fam";
+      const MERCHANT_NAME = "Code With Poojan";
+
+      const modal = document.getElementById("qrModal");
+      const modalAmount = document.getElementById("modalAmount");
+      const qrImage = document.getElementById("qrImage");
+      const closeBtn = document.getElementById("closeModal");
+      const shareBtn = document.getElementById("shareBtn");
+      const copyBtn = document.getElementById("copyBtn");
+
+      let currentAmount = 0;
+      let currentUpiString = "";
+
+      function getUpiString(amount) {
+        return `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=INR`;
+      }
+
+      document.querySelectorAll(".amount-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const amount = this.getAttribute("data-amount");
+          currentAmount = amount;
+          const upiString = getUpiString(amount);
+          currentUpiString = upiString;
+
+          const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiString)}`;
+          qrImage.src = qrUrl;
+          modalAmount.innerText = `Amount: ₹${amount}`;
+          modal.classList.add("active");
+        });
+      });
+
+      shareBtn.addEventListener("click", () => {
+        if (!currentUpiString) return;
+
+        const shareData = {
+          title: MERCHANT_NAME,
+          text: `Pay ₹${currentAmount} to ${MERCHANT_NAME} using UPI. Click link to pay:`,
+          url: currentUpiString,
+        };
+
+        if (navigator.share) {
+          navigator.share(shareData).catch(() => {
+            alert(
+              "Sharing cancelled or not supported. Link copied to clipboard instead.",
+            );
+            copyToClipboard(currentUpiString);
+          });
+        } else {
+          copyToClipboard(currentUpiString);
+          alert(
+            "Payment link copied to clipboard. You can paste it in any UPI app.",
+          );
+        }
+      });
+
+      copyBtn.addEventListener("click", () => {
+        copyToClipboard(currentUpiString);
+        alert("Payment link copied to clipboard!");
+      });
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).catch(() => {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        });
+      }
+
+      closeBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+        qrImage.src = "";
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+          qrImage.src = "";
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+          qrImage.src = "";
+        }
+      });
+    </script>
+  </body>
+</html>
